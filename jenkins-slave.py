@@ -1,10 +1,8 @@
 # -*- encoding: utf-8 -*-
 import os
 
-container_id = os.environ['HOSTNAME']
 jenkins_url = os.environ['JENKINS_URL']
-cloud_name = os.environ['JENKINS_CLOUD_NAME']
-slave_name = cloud_name + '-' + container_id
+slave_name = os.environ['JENKINS_SLAVE_NAME']
 
 jar_path = "/usr/share/jenkins/slave.jar"
 jnlp_url = "http://{}/computer/{}/slave-agent.jnlp".format(jenkins_url, slave_name)
