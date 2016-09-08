@@ -20,11 +20,14 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #  THE SOFTWARE.
 
-FROM java:8-jdk
-MAINTAINER Nicolas De Loof <nicolas.deloof@gmail.com>
+FROM centos:7.2.1511
 
-RUN apt-get update && apt-get install -y apt-utils 
-RUN apt-get install -y telnet net-tools lsof
+MAINTAINER simon <simon_xu@outlook.com>
+
+RUN yum update -y && \
+yum install -y wget && \
+yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel && \
+yum clean all
 
 ENV HOME /home/jenkins
 RUN useradd -c "Jenkins user" -d $HOME -m jenkins
