@@ -26,7 +26,7 @@ MAINTAINER simon <simon_xu@outlook.com>
 
 RUN yum update -y && \
 yum install -y wget && \
-yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel && \
+yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel g++ gcc gcc-c++ libstdc++ make git bzip2 && \
 yum clean all
 
 COPY get-pip.py .
