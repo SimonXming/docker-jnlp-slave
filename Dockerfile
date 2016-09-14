@@ -29,8 +29,13 @@ yum install -y wget && \
 yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel && \
 yum clean all
 
+COPY get-pip.py .
+RUN python get-pip.py
+
 ENV HOME /home/jenkins
 RUN useradd -c "Jenkins user" -d $HOME -m jenkins
+RUN pip install requests
+RUN pip install docker-py==1.10.2
 
 COPY slave.jar /usr/share/jenkins/slave.jar
 RUN chmod 755 /usr/share/jenkins \
@@ -38,6 +43,8 @@ RUN chmod 755 /usr/share/jenkins \
 
 COPY jenkins-slave /usr/local/bin/jenkins-slave
 COPY jenkins-slave.py /home/jenkins/jenkins-slave.py
+
+COPY docker_push /usr/local/bin/docker_push
 
 VOLUME /home/jenkins
 WORKDIR /home/jenkins
