@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<com.dabsquared.gitlabjenkins.connection.GitLabConnectionConfig plugin="gitlab-plugin@1.3.0">
+  <useAuthenticatedEndpoint>false</useAuthenticatedEndpoint>
+  <connections/>
+</com.dabsquared.gitlabjenkins.connection.GitLabConnectionConfig>
