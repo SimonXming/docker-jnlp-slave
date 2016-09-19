@@ -24,6 +24,13 @@ FROM centos:7.2.1511
 
 MAINTAINER simon <simon_xu@outlook.com>
 
+ENV JENKINS_HOME /home/jenkins
+
+ARG user=jenkins
+ARG group=docker
+ARG uid=1000
+ARG gid=993
+
 RUN yum update -y && \
 yum install -y epel-release java-1.8.0-openjdk && \
 yum install -y python-pip && \
@@ -31,8 +38,9 @@ yum clean all && \
 rm -r -f /var/cache/* && \
 rm -r -f /tmp/*
 
-ENV HOME /home/jenkins
-RUN useradd -c "Jenkins user" -d $HOME -m jenkins
+RUN groupadd -g ${gid} ${group} \
+    && useradd -u ${uid} -g ${gid} -d "$JENKINS_HOME" -m -s /bin/bash ${user}
+
 RUN pip install requests && pip install docker-py==1.10.2
 
 COPY slave.jar /usr/share/jenkins/slave.jar
