@@ -15,9 +15,9 @@ ARG gid=1000
 RUN groupadd -g ${gid} ${group} \
     && useradd -d "$JENKINS_HOME" -u ${uid} -g ${gid} -m -s /bin/bash ${user}
 
-RUN chown -R ${user} $JENKINS_HOME
-
 COPY jenkins_home/ $JENKINS_HOME
+
+RUN chown -R ${user} $JENKINS_HOME
 
 # Jenkins home directory is a volume, so configuration and build history
 # can be persisted and survive image upgrades
@@ -25,4 +25,5 @@ VOLUME /var/jenkins_home
 
 USER ${user}
 
-# ENTRYPOINT /usr/bin/python -m SimpleHTTPServer 
+# ENTRYPOINT /usr/bin/python -m SimpleHTTPServer
+
