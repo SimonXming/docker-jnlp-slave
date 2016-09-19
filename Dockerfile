@@ -25,17 +25,18 @@ FROM centos:7.2.1511
 MAINTAINER simon <simon_xu@outlook.com>
 
 RUN yum update -y && \
-yum install -y wget && \
-yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel g++ gcc gcc-c++ libstdc++ make git bzip2 && \
-yum clean all
+yum install -y epel-release java-1.8.0-openjdk && \
+yum install -y python-pip && \
+yum clean all && \
+rm -r -f /var/cache/* && \
+rm -r -f /tmp/*
 
-COPY get-pip.py .
-RUN python get-pip.py
+# COPY get-pip.py .
+# RUN python get-pip.py
 
 ENV HOME /home/jenkins
 RUN useradd -c "Jenkins user" -d $HOME -m jenkins
-RUN pip install requests
-RUN pip install docker-py==1.10.2
+RUN pip install requests && pip install docker-py==1.10.2
 
 COPY slave.jar /usr/share/jenkins/slave.jar
 RUN chmod 755 /usr/share/jenkins \
