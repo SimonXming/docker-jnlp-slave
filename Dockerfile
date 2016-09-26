@@ -32,7 +32,7 @@ ARG uid=1000
 ARG gid=993
 
 RUN yum update -y && \
-yum install -y epel-release java-1.8.0-openjdk && \
+yum install -y epel-release java-1.8.0-openjdk git && \
 yum install -y python-pip && \
 yum clean all && \
 rm -r -f /var/cache/* && \
