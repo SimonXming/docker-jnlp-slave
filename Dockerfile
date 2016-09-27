@@ -50,6 +50,7 @@ RUN chmod 755 /usr/share/jenkins \
 COPY jenkins-slave.py /home/jenkins/jenkins-slave.py
 
 COPY docker_push /usr/local/bin/docker_push
+COPY docker_pull /usr/local/bin/docker_pull
 
 VOLUME /home/jenkins
 WORKDIR /home/jenkins
