@@ -6,7 +6,7 @@ import docker
 import requests
 
 
-def push(username, token, image_name):
+def pull(username, token, repository):
     cli = docker.Client(base_url="unix:///var/run/docker.sock")
 
     PREFIX = 'hack-token'
@@ -15,7 +15,7 @@ def push(username, token, image_name):
         'username': username,
         'password': '{}{}'.format(PREFIX, token)
     }
-    for output in cli.push(image_name, stream=True, auth_config=auth):
+    for output in cli.pull(repository, stream=True, auth_config=auth):
         print(out.strip()[1:-1])
 
 
@@ -34,4 +34,4 @@ if __name__ == '__main__':
         elif op in ["-i", "--image_name"]:
             image_name = value
 
-    push(username, token, image_name)
+    pull(username, token, image_name)
