@@ -16,7 +16,7 @@ def push(username, token, image_name):
         'password': '{}{}'.format(PREFIX, token)
     }
     for output in cli.push(image_name, stream=True, auth_config=auth):
-        print(out.strip()[1:-1])
+        print(output.strip()[1:-1])
 
 
 if __name__ == '__main__':

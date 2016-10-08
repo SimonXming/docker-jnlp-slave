@@ -16,7 +16,7 @@ def pull(username, token, repository):
         'password': '{}{}'.format(PREFIX, token)
     }
     for output in cli.pull(repository, stream=True, auth_config=auth):
-        print(out.strip()[1:-1])
+        print(output.strip()[1:-1])
 
 
 if __name__ == '__main__':
